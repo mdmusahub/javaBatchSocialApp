@@ -2,10 +2,12 @@ package com.mecaps.socialApp.response;
 import com.mecaps.socialApp.entity.User;
 
 public class UserResponse {
-    private String userName;
+    private Long id;
+    private String userName ;
     private String email;
 
     public UserResponse(User user) {
+        this.id = user.getId();
         this.userName = user.getUserName();
         this.email = user.getEmail();
     }
@@ -24,5 +26,13 @@ public class UserResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

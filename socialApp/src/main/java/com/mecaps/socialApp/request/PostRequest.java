@@ -4,6 +4,7 @@ public class PostRequest {
     private String content;
     private Long author;
 
+
     public String getContent() {
         return content;
     }

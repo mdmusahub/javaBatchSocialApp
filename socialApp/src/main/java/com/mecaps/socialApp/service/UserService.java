@@ -4,7 +4,10 @@ import com.mecaps.socialApp.entity.User;
 import com.mecaps.socialApp.repository.UserRepository;
 import com.mecaps.socialApp.response.UserResponse;
 import org.springframework.stereotype.Service;
+
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -37,7 +40,13 @@ public class UserService {
 
         return userList.stream().map(UserResponse::new).toList();
 
+    }
 
 
+    public User findByUserEmail(String email){
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow( () -> new RuntimeException("User not found"));
+        return user;
     }
 }

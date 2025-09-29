@@ -1,6 +1,7 @@
 package com.mecaps.socialApp.controller;
 
 import com.mecaps.socialApp.entity.User;
+import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
 import com.mecaps.socialApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,19 @@ public class UserController {
     public void createUser(@RequestBody User user){
         userService.createUser(user);
     }
+
+    @PutMapping("/update")
+    public UserResponse updateUser(@PathVariable Long id,
+                                   @RequestBody UserRequest userRequest){
+
+        return userService.updateUser(id, userRequest);
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUserById(@PathVariable Long id){
+        return userService.deleteUserById(id);
+    }
+
+
 }

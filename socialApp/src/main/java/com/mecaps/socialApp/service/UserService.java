@@ -2,6 +2,7 @@ package com.mecaps.socialApp.service;
 
 import com.mecaps.socialApp.entity.User;
 import com.mecaps.socialApp.repository.UserRepository;
+import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,31 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow( () -> new RuntimeException("User not found"));
         return user;
+    }
+
+    public UserResponse updateUser(Long id, UserRequest userRequest) {
+
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("user not found")
+        );
+
+        user.setUserName(userRequest.getUserName());
+        user.setPassword(userRequest.getPassword());
+        user.setEmail(userRequest.getEmail());
+        User save = userRepository.save(user);
+        return new UserResponse(save);
+
+    }
+
+
+
+    public String deleteUserById(Long id){
+
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("user not found")
+        );
+        userRepository.delete(user);
+        return "User Delete Successfully!";
+
     }
 }

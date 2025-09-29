@@ -7,9 +7,8 @@ import com.mecaps.socialApp.repository.PostRepository;
 import com.mecaps.socialApp.repository.UserRepository;
 import com.mecaps.socialApp.request.PostRequest;
 import com.mecaps.socialApp.response.PostResponse;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,19 @@ public class PostService {
         Post save = postRepository.save(post);
         return new PostResponse(save);
     }
-
-
-
+    public PostResponse updatePost(Long id, PostRequest request) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("post not found")
+        );
+        post.setContent(request.getContent());
+        Post save = postRepository.save(post);
+        return new PostResponse(save);
+    }
+    public String deletePost(Long id){
+        Post post = postRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("post id not found")
+        );
+        postRepository.delete(post);
+        return "Deleted successfully";
+    }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 public class PostController {
+
     private final PostService postService;
 
     public PostController(PostService postService) {
@@ -21,8 +22,24 @@ public class PostController {
     public List<PostResponse> getAllPost(){
         return postService.getAllPost();
     }
+
+
     @PostMapping("/create")
     public PostResponse createPost(@RequestBody PostRequest request){
         return postService.createPost(request);
     }
+
+
+    @PutMapping("/update/{id}")
+    public PostResponse updatePost(@PathVariable Long id, @RequestBody PostRequest request){
+
+        return postService.updatePost(id, request);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deletePost(@PathVariable Long id){
+        return postService.deletePost(id);
+    }
+
+
 }

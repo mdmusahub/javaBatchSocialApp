@@ -1,17 +1,17 @@
 package com.mecaps.socialApp.response;
 
 import com.mecaps.socialApp.entity.Post;
-import com.mecaps.socialApp.entity.User;
+import org.apache.catalina.User;
 
 public class PostResponse {
     private String content;
     private String postedAt;
-    private String userName;
+    private UserResponse userName;
 
     public PostResponse(Post post) {
         this.content = post.getContent();
         this.postedAt = post.getPostedAt();
-        this.userName = post.getAuthor().getUserName();
+        this.userName = new UserResponse(post.getAuthor());
     }
 
     public String getContent() {
@@ -30,11 +30,11 @@ public class PostResponse {
         this.postedAt = postedAt;
     }
 
-    public String getUserName() {
+    public UserResponse getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public void setUserName(UserResponse userName) {
         this.userName = userName;
     }
 }

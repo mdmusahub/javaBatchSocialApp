@@ -5,6 +5,7 @@ import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
 import com.mecaps.socialApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +32,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public void createUser(@RequestBody User user){
-        userService.createUser(user);
+    public ResponseEntity<?> createUser(@RequestBody User user){
+        return userService.createUser(user);
     }
 
     @PutMapping("/update")

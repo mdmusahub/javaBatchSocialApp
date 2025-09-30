@@ -1,7 +1,13 @@
 package com.mecaps.socialApp.response;
 
 import com.mecaps.socialApp.entity.Comment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+//ResponseEntity<?>
+// status code
+//body
+//massage
 
 
 public class CommentResponse {

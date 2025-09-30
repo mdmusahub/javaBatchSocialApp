@@ -4,10 +4,13 @@ import com.mecaps.socialApp.entity.User;
 import com.mecaps.socialApp.repository.UserRepository;
 import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -20,14 +23,26 @@ public class UserService {
     }
 
 
-    public void createUser(User userRequest) {
+    public ResponseEntity<?> createUser(User userRequest) {
         User userObj = new User();
         userObj.setUserName(userRequest.getUserName());
         userObj.setEmail(userRequest.getEmail());
         userObj.setPassword(userRequest.getPassword());
-        userRepository.save(userRequest);
+        User save = userRepository.save(userRequest);
+        
+
+//        return ResponseEntity.ok("User Created");
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Map.of(
+                        "message" , "User Created successfully",
+                        "body" , save,
+                        "success", true
+                ));
+
 
     }
+
 
     public List<UserResponse> getAllUser() {
         List<User> userList = userRepository.findAll();

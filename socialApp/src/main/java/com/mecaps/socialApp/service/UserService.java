@@ -7,6 +7,7 @@ import com.mecaps.socialApp.response.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.mecaps.socialApp.exception.UserNotFoundException;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -62,7 +63,7 @@ public class UserService {
     public User findByUserEmail(String email){
 
         User user = userRepository.findByEmail(email)
-                .orElseThrow( () -> new RuntimeException("User not found"));
+                .orElseThrow( () -> new UserNotFoundException("User not found by " + email+ " email"));
         return user;
     }
 

@@ -28,6 +28,7 @@ public class GlobalException {
                 new com.mecaps.socialApp.exception.ErrorResponse(
                         LocalDateTime.now(),
                         HttpStatus.NOT_FOUND.value(),
+                        HttpStatus.NOT_FOUND.getReasonPhrase(),
                         exception.getMessage(),
                         request.getRequestURI()
                 );

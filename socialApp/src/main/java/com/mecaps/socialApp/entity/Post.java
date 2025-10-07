@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "post")
 public class Post {
@@ -20,6 +23,10 @@ public class Post {
 
     @ManyToOne
     private User author;
+
+    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
 
 
     public Long getId() {

@@ -9,12 +9,13 @@ import com.mecaps.socialApp.repository.PostRepository;
 import com.mecaps.socialApp.repository.UserRepository;
 import com.mecaps.socialApp.request.CommentRequest;
 import com.mecaps.socialApp.response.CommentResponse;
+import com.mecaps.socialApp.service.CommentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CommentServiceImpl {
+public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;

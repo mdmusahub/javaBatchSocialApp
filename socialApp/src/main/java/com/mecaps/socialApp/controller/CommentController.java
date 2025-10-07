@@ -6,6 +6,7 @@ import com.mecaps.socialApp.request.CommentRequest;
 import com.mecaps.socialApp.response.CommentResponse;
 import com.mecaps.socialApp.response.PostResponse;
 import com.mecaps.socialApp.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
+
     private final CommentService commentService;
 
     public CommentController(CommentService commentService) {

@@ -1,6 +1,10 @@
 package com.mecaps.socialApp.response;
 import com.mecaps.socialApp.entity.User;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class UserResponse {
     private Long id;
     private String userName ;
@@ -12,27 +16,4 @@ public class UserResponse {
         this.email = user.getEmail();
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

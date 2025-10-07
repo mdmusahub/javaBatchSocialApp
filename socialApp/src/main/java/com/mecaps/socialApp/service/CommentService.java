@@ -2,6 +2,7 @@ package com.mecaps.socialApp.service;
 
 import com.mecaps.socialApp.response.CommentResponse;
 import com.mecaps.socialApp.request.CommentRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

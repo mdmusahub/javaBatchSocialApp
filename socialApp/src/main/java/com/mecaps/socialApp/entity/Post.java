@@ -1,6 +1,7 @@
 package com.mecaps.socialApp.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "post")
+@Data
 public class Post {
 
     @Id
@@ -28,36 +30,4 @@ public class Post {
     private List<Comment> comments = new ArrayList<>();
 
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getPostedAt() {
-        return postedAt;
-    }
-
-    public void setPostedAt(String postedAt) {
-        this.postedAt = postedAt;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
 }

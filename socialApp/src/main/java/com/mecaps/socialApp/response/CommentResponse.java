@@ -1,6 +1,8 @@
 package com.mecaps.socialApp.response;
 
 import com.mecaps.socialApp.entity.Comment;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +11,8 @@ import org.springframework.stereotype.Component;
 //body
 //massage
 
-
+@Getter
+@Setter
 public class CommentResponse {
 
     private String commentedString;
@@ -21,19 +24,4 @@ public class CommentResponse {
         this.postResponse = new PostResponse(comment.getPostId());
     }
 
-    public String getCommentedString() {
-        return commentedString;
-    }
-
-    public void setCommentedString(String commentedString) {
-        this.commentedString = commentedString;
-    }
-
-    public PostResponse getPostResponse() {
-        return postResponse;
-    }
-
-    public void setPostResponse(PostResponse postResponse) {
-        this.postResponse = postResponse;
-    }
 }

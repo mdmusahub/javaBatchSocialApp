@@ -3,7 +3,8 @@ package com.mecaps.socialApp.controller;
 import com.mecaps.socialApp.entity.User;
 import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
-import com.mecaps.socialApp.serviceImpl.UserService;
+import com.mecaps.socialApp.service.UserService;
+import com.mecaps.socialApp.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,13 @@ import java.util.List;
 
 // Lombok library
 //@Getter / @Setter
-//@NoArgsConstructor, @AllArgsConstructor, @RequiredArgsConstructor(final, @NonNull)
+//@NoArgsConstructor, @AllArgsConstructor,
+// @RequiredArgsConstructor(final, @NonNull)
 
 //@Data
 //A shortcut for:
-//@Getter, @Setter, @ToString, @EqualsAndHashCode, and @RequiredArgsConstructor
+//@Getter, @Setter, @ToString, @EqualsAndHashCode, and
+// @RequiredArgsConstructor.
 
 //@Builder
 //Creates a Builder Pattern implementation for object creation.
@@ -28,7 +31,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }

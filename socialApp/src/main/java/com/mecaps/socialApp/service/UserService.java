@@ -8,11 +8,14 @@ public interface UserService {
 
     void createUser(User userRequest);
 
-    List<UserResponse> getAllUser();
+    List<User> getAllUser();
 
     User findByUserEmail(String email);
 
     UserResponse updateUser(Long id, UserRequest userRequest);
 
     String deleteUserById(Long id);
+
+
+    public List<User> getUserByNameUsingCriteriaAPI(String userName);
 }

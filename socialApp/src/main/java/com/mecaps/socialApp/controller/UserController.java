@@ -38,8 +38,13 @@ public class UserController {
     }
 
     @GetMapping("/get")
-    public List<UserResponse> getAllUser(){
+    public List<User> getAllUser(){
         return userService.getAllUser();
+    }
+
+    @GetMapping("/findByUserName")
+    public List<User> getUserByNameUsingCriteria(@RequestParam String userName){
+        return userService.getUserByNameUsingCriteriaAPI(userName);
     }
 
     @GetMapping("/by-email")

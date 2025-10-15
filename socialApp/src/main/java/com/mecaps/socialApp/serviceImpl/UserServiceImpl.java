@@ -1,5 +1,6 @@
 package com.mecaps.socialApp.serviceImpl;
 
+//import com.mecaps.socialApp.config.SecurityConfig;
 import com.mecaps.socialApp.entity.User;
 import com.mecaps.socialApp.repository.UserRepository;
 import com.mecaps.socialApp.request.UserRequest;
@@ -11,6 +12,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.mecaps.socialApp.exception.UserNotFoundException;
 
@@ -20,15 +22,14 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
-
     private final EntityManager entityManager;
+    private final PasswordEncoder passwordEncoder;
 
 
-    public UserServiceImpl(UserRepository userRepository, EntityManager entityManager, EntityManager entityManager1) {
+    public UserServiceImpl(UserRepository userRepository, EntityManager entityManager, EntityManager entityManager1, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-
         this.entityManager = entityManager1;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -37,8 +38,9 @@ public class UserServiceImpl implements UserService {
         User userObj = new User();
         userObj.setUserName(userRequest.getUserName());
         userObj.setEmail(userRequest.getEmail());
-        userObj.setPassword(userRequest.getPassword());
-        userRepository.save(userRequest);
+//        userObj.setPassword((userRequest.getPassword()));
+        userObj.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        userRepository.save(userObj);
         
 
 //        return ResponseEntity.ok("User Created");

@@ -13,6 +13,7 @@ import java.util.Optional;
 //DAO -> Data Access Object Layer
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<User> findByUserName(String name);
 
     @Query(value = "select * from user where email = ?1", nativeQuery = true)
     Optional<User> findByEmail(String email);

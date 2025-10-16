@@ -29,36 +29,19 @@ public class SecurityConfig {
     // Security filter chain
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        auth ->
-                                auth.requestMatchers("/user/*").permitAll()
-//                                .requestMatchers("/user/getAll").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+
+        http
+                .csrf(AbstractHttpConfigurer::disable)   // Disable CSRF for APIs
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/user/create").permitAll() // open
+                        .requestMatchers("/user/get/all").hasRole("ADMIN") // Only adm
+                        .requestMatchers("/user/*").hasRole("USER")
+                        .anyRequest().authenticated()
                 )
-        .userDetailsService(userDetailsService).httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults()); // Enable Basic Auth
+
+
         return http.build();
 
-
-
-
-
-
-
-
-
-//        http
-//                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for APIs
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/user/*").permitAll()
-//                        .anyRequest().authenticated()                 // all other endpoints require auth
-//                )
-//                .userDetailsService(userDetailsService) // use custom UserDetailsService
-////                .httpBasic(); // enable Basic Authentication(older version )
-//                .httpBasic(Customizer.withDefaults());
-//
-//
-//
-//        return http.build();
     }
 }

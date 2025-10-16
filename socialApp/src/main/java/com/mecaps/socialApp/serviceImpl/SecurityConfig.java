@@ -226,6 +226,10 @@
 //
 //
 //
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 ////@Configuration // Marks this class as a Spring configuration class
 ////public class SecurityConfig {
 ////
@@ -296,3 +300,30 @@
 //        );
 //    }
 //}
+
+
+
+
+
+
+
+
+
+
+
+//
+//String role = user.getRole().startsWith("ROLE_") ? user.getRole() : "ROLE_" + user.getRole();
+//
+//GrantedAuthority authority = new SimpleGrantedAuthority(role);
+//
+//        return new org.springframework.security.core.userdetails.User(
+//        user.getUserName(),
+//                user.getPassword(),
+//                Collections.singleton(authority));
+
+
+
+
+
+
+

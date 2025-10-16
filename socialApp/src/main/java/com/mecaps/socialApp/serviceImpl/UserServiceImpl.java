@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService {
         User userObj = new User();
         userObj.setUserName(userRequest.getUserName());
         userObj.setEmail(userRequest.getEmail());
-//        userObj.setPassword((userRequest.getPassword()));
+        userObj.setRole(userRequest.getRole());
         userObj.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         userRepository.save(userObj);
-        
+
 
 //        return ResponseEntity.ok("User Created");
 //        return ResponseEntity

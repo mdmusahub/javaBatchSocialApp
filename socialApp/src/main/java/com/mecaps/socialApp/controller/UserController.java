@@ -1,17 +1,22 @@
 package com.mecaps.socialApp.controller;
 
 import com.mecaps.socialApp.entity.User;
+import com.mecaps.socialApp.request.LoginDTO;
 import com.mecaps.socialApp.request.UserRequest;
 import com.mecaps.socialApp.response.UserResponse;
+import com.mecaps.socialApp.security.JwtService;
 import com.mecaps.socialApp.service.UserService;
 import com.mecaps.socialApp.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Lombok library
 //@Getter / @Setter
@@ -33,9 +38,23 @@ public class UserController {
 
     private final UserService userService;
 
+    private final JwtService jwtService;
 
-    public UserController(UserService userService) {
+
+    public UserController(UserService userService, JwtService jwtService) {
         this.userService = userService;
+        this.jwtService = jwtService;
+    }
+
+
+    @PostMapping("/create")
+    public Map<String , String> login(@RequestBody LoginDTO request){
+        String token = jwtService
+                .generateAccessToken(request.getEmail(), request.getRole());
+        Map<String, String> map = new HashMap<>();
+        map.put("Access Token : ", token);
+        map.put("Role : ", request.getRole());
+        return map;
     }
 
 
@@ -55,11 +74,11 @@ public class UserController {
     }
 
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createUser(@RequestBody User user){
-        userService.createUser(user);
-        return ResponseEntity.ok("User created successfully");
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<?> createUser(@RequestBody User user){
+//        userService.createUser(user);
+//        return ResponseEntity.ok("User created successfully");
+//    }
 
     @PutMapping("/update")
     public UserResponse updateUser(@PathVariable Long id,

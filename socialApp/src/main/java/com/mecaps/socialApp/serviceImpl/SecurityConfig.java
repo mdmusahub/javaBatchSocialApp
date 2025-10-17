@@ -227,8 +227,11 @@
 //
 //
 
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import javax.crypto.SecretKey;
 
 ////@Configuration // Marks this class as a Spring configuration class
 ////public class SecurityConfig {
@@ -327,3 +330,21 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 
+
+
+//    public String generateAccessToken(String email, String role) {
+//        return Jwts.builder()
+//                .subject(email)
+//                .claim("role", role) //  store list of roles
+//                .issuedAt(new Date(System.currentTimeMillis()))
+//                .expiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION))
+//                .signWith(getSigningKey())
+//                .compact();
+//    }
+
+
+
+
+//private SecretKey getSigningKey() {
+//    return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+//}
